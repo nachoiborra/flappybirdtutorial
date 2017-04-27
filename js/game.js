@@ -1,7 +1,7 @@
 var game = new Phaser.Game(370, 550, Phaser.CANVAS, 'game');
 
 var background, character, pipeSegments;
-var spaceBar, mouse;
+var spaceBar, mouse, pointer;
 var points, textPoints;
 
 var mainState = 
@@ -31,6 +31,7 @@ var mainState =
 
         spaceBar = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         mouse = game.input.activePointer;
+        pointer = game.input.addPointer();
 
         points = 0;
         textPoints = game.add.text(0, 500, "Points: 0", {font:"bold 16px arial", fill:"black", align:"left"});
@@ -47,7 +48,7 @@ var mainState =
             if (game.physics.arcade.overlap(character, pipeSegments))
                 game.state.start('gameOver');
 
-            if (spaceBar.isDown || mouse.isDown)
+            if (spaceBar.isDown || mouse.isDown || pointer.isDown)
             {
                 character.body.velocity.y = -350;
             }
