@@ -1,4 +1,4 @@
-var game = new Phaser.Game(370, 550, Phaser.AUTO, 'game');
+var game = new Phaser.Game(370, 550, Phaser.CANVAS, 'game');
 
 var background, character, pipeSegments;
 var spaceBar, pointer;
@@ -49,7 +49,7 @@ var mainState =
             if (game.physics.arcade.overlap(character, pipeSegments))
                 game.state.start('gameOver');
 
-            if (spaceBar.isDown || pointer.isDown || (!pointer.isMouse && pointer.active))
+            if (spaceBar.isDown || pointer.isDown || game.input.pointer1.isDown)
             {
                 character.body.velocity.y = -350;
             }
