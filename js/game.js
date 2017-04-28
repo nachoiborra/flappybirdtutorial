@@ -1,7 +1,7 @@
 var game = new Phaser.Game(370, 550, Phaser.CANVAS, 'game');
 
 var background, character, pipeSegments;
-var spaceBar, mouse, pointer;
+var spaceBar, pointer;
 var points, textPoints;
 
 var mainState = 
@@ -30,8 +30,7 @@ var mainState =
         game.time.events.loop(2000, this.createPipe, this);
 
         spaceBar = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-        mouse = game.input.activePointer;
-        pointer = game.input.addPointer();
+        pointer = game.input.activePointer;
 
         points = 0;
         textPoints = game.add.text(0, 500, "Points: 0", {font:"bold 16px arial", fill:"black", align:"left"});
@@ -48,7 +47,7 @@ var mainState =
             if (game.physics.arcade.overlap(character, pipeSegments))
                 game.state.start('gameOver');
 
-            if (spaceBar.isDown || mouse.isDown || pointer.isDown)
+            if (spaceBar.isDown || pointer.isDown || (!pointer.isMouse && pointer.active))
             {
                 character.body.velocity.y = -350;
             }
@@ -97,14 +96,11 @@ var gameOverState =
         text.anchor.setTo(0.5);
         text = game.add.text(game.width/2, game.height/2 + 50, "Click or touch the screen to play again", {font: "bold 20px arial", fill: "black", align:"center"});
         text.anchor.setTo(0.5);
-
-        //spaceBar = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-        //mouse = game.input.activePointer;        
     },
 
     update: function()
     {
-        if (spaceBar.isDown || mouse.isDown)
+        if (spaceBar.isDown || pointer.isDown || (!pointer.isMouse && pointer.active))
         {
             game.state.start('main');
         }
