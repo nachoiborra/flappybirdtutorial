@@ -1,4 +1,4 @@
-var game = new Phaser.Game(370, 550, Phaser.CANVAS, 'game');
+var game = new Phaser.Game(370, 550, Phaser.AUTO, 'game');
 
 var background, character, pipeSegments;
 var spaceBar, pointer;
