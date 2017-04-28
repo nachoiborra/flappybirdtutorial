@@ -11,6 +11,8 @@ var mainState =
         game.load.image('background', 'assets/bg.jpeg');
         game.load.spritesheet('bird', 'assets/bird_spritesheet.png', 43, 30);
         game.load.image('pipe_segment', 'assets/pipe_segment.png');
+        game.input.maxPointers = 2;
+        game.input.multiInputOverride = Phaser.Input.TOUCH_OVERRIDES_MOUSE;        
     },
 
     create: function()
