@@ -102,7 +102,7 @@ var gameOverState =
 
     update: function()
     {
-        if (spaceBar.isDown || pointer.isDown || (!pointer.isMouse && pointer.active))
+        if (spaceBar.isDown || pointer.isDown || game.input.pointer1.isDown)
         {
             game.state.start('main');
         }
